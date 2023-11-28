@@ -1,8 +1,11 @@
 const express = require('express')
-const bodyParser = require('body-parser')//add this
+const bodyParser = require('body-parser')
+const NodeCache = require( "node-cache" );
 
 const app = express()
 const port = process.env.PORT || 5000
+const myCache = new NodeCache();
+
 
 app.use(bodyParser.json());
 
@@ -11,7 +14,12 @@ app.get('/synonyms', (req, res) =>{
 })
 
 app.post('/addsynonym', (req, res) =>{
-  console.log('Received data:', req.body);
+  myCache.set(req.body.word, req.body)
+  //console.log('Received data:', req.body);
+  let value = myCache.get(req.body.word)
+  //console.log("Cached items: " + JSON.stringify(value))
+  mykeys = myCache.keys();
+  console.log("Cached items: " + mykeys)
 })
 
 

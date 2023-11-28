@@ -25,7 +25,7 @@ function App() {
 
     const obj = {
       "word" : word,
-      "synonyms" : synonyms
+      "synonyms" : ["hi","good day"]
     }
 
     try {
